@@ -13,4 +13,6 @@ transaction_level = 2
 #其它数据源连接方式
 #postgresql_url = jdbc:postgresql://127.0.0.1:5432/postgres
 
-##MySQL用户 直接删除本配置即可
+##Oralce 用户 修改上面的配置，然后重命名为 jdbc.config 即可运行服务
+##Oralce 用户 修改上面的配置，然后重命名为 jdbc.config 即可运行服务
+##Oralce 用户 修改上面的配置，然后重命名为 jdbc.config 即可运行服务
