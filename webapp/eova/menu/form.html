@@ -65,8 +65,8 @@
         </table>
     </fieldset>
     <fieldset id="master_slave_grid" style="display: none;">
-        <legend>业务模版配置(主子表)</legend>
-        <table class="table" style="width: 100%;">
+        <legend>业务模版配置(主子表)默认可以配置5个子，有几个配几个，超过5个手工改库</legend>
+       	<table class="table" style="width: 100%;">
             <tr>
                 <th style="width:110px;">主对象</th>
                 <td>
@@ -77,17 +77,79 @@
                     <#find id="masterFieldCode" name="masterFieldCode" exp=" " />
                 </td>
             </tr>
-            <tr>
-                <th style="width:110px;">子对象</th>
-                <td>
-                    <#find id="slaveObjectCode" name="slaveObjectCode" code="eova_field_code" field="object_code" />
-                </td>
-                <th style="width:110px;">子关联字段</th>
-                <td>
-                    <#find id="slaveFieldCode" name="slaveFieldCode" exp=" " />
-                </td>
-            </tr>
         </table>
+        <div id="sonTab" class="easyui-tabs" data-options="fit:true,border:true" style="width:1060px;height:30px;">
+        	<div title="子1">
+	        	<table class="table" style="width: 100%;">
+		            <tr>
+		                <th style="width:110px;">对象</th>
+		                <td>
+		                    <#find id="slaveObjectCode1" name="slaveObjectCode1" code="eova_field_code" field="object_code" />
+		                </td>
+		                <th style="width:110px;">关联字段</th>
+		                <td>
+		                    <#find id="slaveFieldCode1" name="slaveFieldCode1" exp=" " />
+		                </td>
+		            </tr>
+		        </table>	
+        	</div>
+        	<div title="子2">
+	        	<table class="table" style="width: 100%;">
+		            <tr>
+		                <th style="width:110px;">对象</th>
+		                <td>
+		                    <#find id="slaveObjectCode2" name="slaveObjectCode2" code="eova_field_code" field="object_code" />
+		                </td>
+		                <th style="width:110px;">关联字段</th>
+		                <td>
+		                    <#find id="slaveFieldCode2" name="slaveFieldCode2" exp=" " />
+		                </td>
+		            </tr>
+		        </table>	
+        	</div>
+        	<div title="子3">
+	        	<table class="table" style="width: 100%;">
+		            <tr>
+		                <th style="width:110px;">对象</th>
+		                <td>
+		                    <#find id="slaveObjectCode3" name="slaveObjectCode3" code="eova_field_code" field="object_code" />
+		                </td>
+		                <th style="width:110px;">关联字段</th>
+		                <td>
+		                    <#find id="slaveFieldCode3" name="slaveFieldCode3" exp=" " />
+		                </td>
+		            </tr>
+		        </table>	
+        	</div>
+        	<div title="子4">
+	        	<table class="table" style="width: 100%;">
+		            <tr>
+		                <th style="width:110px;">对象</th>
+		                <td>
+		                    <#find id="slaveObjectCode4" name="slaveObjectCode4" code="eova_field_code" field="object_code" />
+		                </td>
+		                <th style="width:110px;">关联字段</th>
+		                <td>
+		                    <#find id="slaveFieldCode4" name="slaveFieldCode4" exp=" " />
+		                </td>
+		            </tr>
+		        </table>	
+        	</div>
+        	<div title="子5">
+	        	<table class="table" style="width: 100%;">
+		            <tr>
+		                <th style="width:110px;">对象</th>
+		                <td>
+		                    <#find id="slaveObjectCode5" name="slaveObjectCode5" code="eova_field_code" field="object_code" />
+		                </td>
+		                <th style="width:110px;">关联字段</th>
+		                <td>
+		                    <#find id="slaveFieldCode5" name="slaveFieldCode5" exp=" " />
+		                </td>
+		            </tr>
+		        </table>	
+        	</div>
+        </div>
     </fieldset>
 </form>
 <style>
@@ -163,15 +225,37 @@
     $(function () {
 
         var $masterObjectCode = $('#masterObjectCode');
-        var $slaveObjectCode = $('#slaveObjectCode');
-
         var $masterFieldCode = $('#masterFieldCode');
-        var $slaveFieldCode = $('#slaveFieldCode');
+
+        var $slaveObjectCode1 = $('#slaveObjectCode1');
+        var $slaveFieldCode1 = $('#slaveFieldCode1');
+        
+        var $slaveObjectCode2 = $('#slaveObjectCode2');
+        var $slaveFieldCode2 = $('#slaveFieldCode2');
+        
+        var $slaveObjectCode3 = $('#slaveObjectCode3');
+        var $slaveFieldCode3 = $('#slaveFieldCode3');
+        
+        var $slaveObjectCode4 = $('#slaveObjectCode4');
+        var $slaveFieldCode4 = $('#slaveFieldCode4');
+        
+        var $slaveObjectCode5 = $('#slaveObjectCode5');
+        var $slaveFieldCode5 = $('#slaveFieldCode5');
 
         // 初始化禁用子字段
         $masterFieldCode.mask();
-        $slaveFieldCode.mask();
+        $slaveFieldCode1.mask();
+        $slaveFieldCode2.mask();
+        $slaveFieldCode3.mask();
+        $slaveFieldCode4.mask();
+        $slaveFieldCode5.mask();
 
+        function buildUrl(newValue){
+        	var exp = 'select en Field,cn Name from eova_field where object_code = "' + newValue + '";ds=eova';            
+            var url = "/widget/find?exp=" + encodeURIComponent(encodeURIComponent(exp));
+            return url;
+        }
+        
         // 查找框级联
         $masterObjectCode.eovafind({onChange: function (oldValue, newValue) {
             //console.log(oldValue +'|'+newValue);
@@ -180,24 +264,54 @@
                 return;
             }
             
-            var exp = 'select en Field,cn Name from eova_field where object_code = "' + newValue + '";ds=eova';            
-            var url = "/widget/find?exp=" + encodeURIComponent(encodeURIComponent(exp));
-            
-            $masterFieldCode.attr('url', url);
+            $masterFieldCode.attr('url', buildUrl(newValue));
             $masterFieldCode.unmask();
         }});
-        $slaveObjectCode.eovafind({onChange: function (oldValue, newValue) {
-            //console.log(oldValue +'|'+newValue);
+        
+        $slaveObjectCode1.eovafind({onChange: function (oldValue, newValue) {
             if (newValue == '') {
-                $slaveFieldCode.mask();
+                $slaveFieldCode1.mask();
                 return;
             }
-            
-            var exp = 'select en Field,cn Name from eova_field where object_code = "' + newValue + '";ds=eova';            
-            var url = "/widget/find?exp=" + encodeURIComponent(encodeURIComponent(exp));
-            
-            $slaveFieldCode.attr('url', url);
-            $slaveFieldCode.unmask();
+
+            $slaveFieldCode1.attr('url', buildUrl(newValue));
+            $slaveFieldCode1.unmask();
+        }});
+        $slaveObjectCode2.eovafind({onChange: function (oldValue, newValue) {
+            if (newValue == '') {
+                $slaveFieldCode2.mask();
+                return;
+            }
+
+            $slaveFieldCode2.attr('url', buildUrl(newValue));
+            $slaveFieldCode2.unmask();
+        }});
+        $slaveObjectCode3.eovafind({onChange: function (oldValue, newValue) {
+            if (newValue == '') {
+                $slaveFieldCode3.mask();
+                return;
+            }
+
+            $slaveFieldCode3.attr('url', buildUrl(newValue));
+            $slaveFieldCode3.unmask();
+        }});
+        $slaveObjectCode4.eovafind({onChange: function (oldValue, newValue) {
+            if (newValue == '') {
+                $slaveFieldCode4.mask();
+                return;
+            }
+
+            $slaveFieldCode4.attr('url', buildUrl(newValue));
+            $slaveFieldCode4.unmask();
+        }});
+        $slaveObjectCode5.eovafind({onChange: function (oldValue, newValue) {
+            if (newValue == '') {
+                $slaveFieldCode5.mask();
+                return;
+            }
+
+            $slaveFieldCode5.attr('url', buildUrl(newValue));
+            $slaveFieldCode5.unmask();
         }});
 
         $form.validator({

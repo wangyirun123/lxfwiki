@@ -11,9 +11,9 @@ var submitNow = function($dialog, $grid, $pjq) {
         if (result.success) {
         	$.slideMsg("修改${object.name}成功！", $pjq);
         	if($grid.context.URL.indexOf('/single_tree') != -1){
-        		$grid.treegrid('load');
+        		$grid.treegrid('reload');
         	} else {
-        		$grid.datagrid('load');
+        		$grid.datagrid('reload');
         	}
             $dialog.dialog('destroy');	
             

@@ -56,11 +56,6 @@
 						var curTabTitle = $(this).data('tabTitle');
 						var type = $(item.target).attr('type');
 
-						if (type === 'refresh') {
-							refreshTab(curTabTitle);
-							return;
-						}
-
 						if (type === 'close') {
 							var t = mainTabs.tabs('getTab', curTabTitle);
 							if (t.panel('options').closable) {

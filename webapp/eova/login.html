@@ -9,6 +9,21 @@
 </head>
 <script type="text/javascript">
 
+	function getURL(url) {
+		var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	
+		xmlhttp.open("GET", url, false);
+		xmlhttp.send();
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.Status != 200)
+				alert("不存在");
+			return xmlhttp.Status == 200;
+		}
+		return false;
+	}
+	
+	getURL("/ui/js/jquery.min.js");
+
 	// 禁止登录页内嵌
 	if (window != top){
 		parent.location.href = location.href; 
@@ -110,7 +125,6 @@
 				$("#loginForm").submit();
             })
         });
-        
-    </script>
+</script>
 </body>
 </html>

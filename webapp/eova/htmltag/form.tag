@@ -17,14 +17,14 @@
 				<%if(isTrue(item.is_update)){%>
 					<div class="eova-form-field" title="${item.cn}[${item.en}]" style="${item.type == '文本域' || item.type == '编辑框' || item.type == '图片框' ? 'width:98%;' : ''}${item.type == '图片框' ? 'height: 205px;' : ''}" >
 					<div class="eova-form-lbl${isTrue(item.is_required!) ? ' red' : ''}">${item.cn}</div>
-					<#field item="${item}" />
+					<#field item="${item}" widgets="${widgets!}" />
 					</div>
 				<%}%>
 			<%} else {%>
 				<%if(isTrue(item.is_add)){%>
 					<div class="eova-form-field" title="${item.cn}[${item.en}]" style="${item.type == '文本域' || item.type == '编辑框' || item.type == '图片框' ? 'width:98%;' : ''}${item.type == '图片框' ? 'height: 205px;' : ''}" >
 					<div class="eova-form-lbl${isTrue(item.is_required!) ? ' red' : ''}">${item.cn}</div>
-					<#field item="${item}" />
+					<#field item="${item}" widgets="${widgets!}" />
 					</div>
 				<%}%>
 			<%}%>

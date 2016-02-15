@@ -7,6 +7,7 @@
 package com.oss;
 
 import com.eova.config.EovaConfig;
+import com.eova.interceptor.LoginInterceptor;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
@@ -15,6 +16,7 @@ import com.oss.model.Hotel;
 import com.oss.model.OrderItem;
 import com.oss.model.Orders;
 import com.oss.model.Product;
+import com.oss.product.ProductController;
 
 public class OSSConfig extends EovaConfig {
 
@@ -26,7 +28,10 @@ public class OSSConfig extends EovaConfig {
 	@Override
 	protected void route(Routes me) {
 		// 自定义的路由配置往这里加。。。
-		// me.add("/xxx", XxxController.class);
+		me.add("/product", ProductController.class);
+		
+		// 不需要登录拦截的URL
+		LoginInterceptor.excludes.add("/init");
 	}
 
 	/**
@@ -49,7 +54,9 @@ public class OSSConfig extends EovaConfig {
 	@Override
 	protected void plugin(Plugins plugins) {
 		// 添加数据源
+		
 		// 添加自动扫描插件
+		
 		// ...
 	}
 
