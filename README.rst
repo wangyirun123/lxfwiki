@@ -25,11 +25,11 @@ Easy Object View Admin(简单对象视图管理系统)
 
 Eova效果展示：
 ------------------------
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/AE6C69B786834999A3AE72BF31129DA3
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/E6EC531F563440BF90C442AA2D79CDA7
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/5CE6488C39F94F48AA1CA013EB37F4D1
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/45989464171B4189A2EC92D65EE11937
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/B5ED5D9375524F038755D524A5491D9C
-.. figure:: http://note.youdao.com/yws/public/resource/b2bf5cd7b40c3d01721d721d1dd8f1e3/3A8D1F91E355452D8A5CA34BA9849C44
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova0.png
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova1.png
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova2.png
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova3.png
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova4.png
+.. figure:: http://7d9i3x.com1.z0.glb.clouddn.com/eova5.png
 
 其它疑问请加群！ 424665115
