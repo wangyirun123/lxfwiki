@@ -5,7 +5,7 @@
     <groupId>com.eova</groupId>
     <artifactId>eova</artifactId>
     <packaging>war</packaging>
-    <version>1.4</version>
+    <version>1.5</version>
 
     <name>eova</name>
     <url>http://git.oschina.net/eova/eova</url>
