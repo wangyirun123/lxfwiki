@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : YUN-SQL
 Source Server Version : 50514
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : demo
 
 Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2016-01-20 00:31:47
+Date: 2016-02-16 18:17:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `area` (
   `id` int(11) NOT NULL COMMENT 'ID',
   `name` varchar(50) NOT NULL COMMENT '名称',
   `pid` int(11) NOT NULL COMMENT '父级',
-  `lv` int(11) NOT NULL COMMENT '级别：1=省，2=市，3=区',
+  `lv` int(11) NOT NULL COMMENT '级别：1=省2=市3=区',
   PRIMARY KEY (`id`),
   KEY `pid_index` (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -3441,25 +3441,6 @@ INSERT INTO `area` VALUES ('3407', '肥东县', '3401', '3');
 INSERT INTO `area` VALUES ('3408', '肥西县', '3401', '3');
 
 -- ----------------------------
--- Table structure for `comment`
--- ----------------------------
-DROP TABLE IF EXISTS `comment`;
-CREATE TABLE `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `order_id` int(11) NOT NULL COMMENT '订单ID',
-  `score` int(2) NOT NULL COMMENT '评分',
-  `info` varchar(255) DEFAULT NULL COMMENT '评价',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of comment
--- ----------------------------
-INSERT INTO `comment` VALUES ('1', '1', '1', '床单没洗干净', '2015-10-25 01:16:26');
-INSERT INTO `comment` VALUES ('2', '1', '2', '太棒了，免费，服务还好！', '2015-12-04 18:44:53');
-
--- ----------------------------
 -- Table structure for `dicts`
 -- ----------------------------
 DROP TABLE IF EXISTS `dicts`;
@@ -3471,7 +3452,7 @@ CREATE TABLE `dicts` (
   `field` varchar(50) NOT NULL,
   `ext` varchar(255) DEFAULT '' COMMENT '扩展Json',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dicts
@@ -3504,31 +3485,10 @@ INSERT INTO `dicts` VALUES ('33', '0', '正常', 'users', 'status', '');
 INSERT INTO `dicts` VALUES ('34', '1', '封号', 'users', 'status', '');
 INSERT INTO `dicts` VALUES ('35', '2', '禁言', 'users', 'status', '');
 INSERT INTO `dicts` VALUES ('36', '3', '删除', 'users', 'status', '');
-INSERT INTO `dicts` VALUES ('39', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('40', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('41', '3', '区', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('42', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('43', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('44', '3', '区', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('45', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('46', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('47', '3', '区', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('48', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('49', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('50', '3', '区', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('51', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('52', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('53', '3', '区', 'area', 'lv', '');
 INSERT INTO `dicts` VALUES ('54', '0', '坦克', 'users', 'tag', '');
 INSERT INTO `dicts` VALUES ('55', '1', 'ADC', 'users', 'tag', '');
 INSERT INTO `dicts` VALUES ('56', '2', '打野', 'users', 'tag', '');
 INSERT INTO `dicts` VALUES ('57', '3', 'AP', 'users', 'tag', '');
-INSERT INTO `dicts` VALUES ('58', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('59', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('60', '3', '区', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('61', '1', '省', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('62', '2', '市', 'area', 'lv', '');
-INSERT INTO `dicts` VALUES ('63', '3', '区', 'area', 'lv', '');
 
 -- ----------------------------
 -- Table structure for `hotel`
@@ -3562,7 +3522,7 @@ DROP TABLE IF EXISTS `hotel_bed`;
 CREATE TABLE `hotel_bed` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `hotel_id` int(11) NOT NULL COMMENT '酒店',
-  `size` int(2) NOT NULL COMMENT '床铺尺码',
+  `sizes` int(2) NOT NULL COMMENT '床铺尺码',
   `num` int(11) DEFAULT '1' COMMENT '数量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -3685,7 +3645,7 @@ CREATE TABLE `product` (
   `type` int(2) DEFAULT '1' COMMENT '产品类型：1=租赁商品，2=积分商品',
   `category` int(2) NOT NULL COMMENT '分类',
   `stuff` int(2) NOT NULL COMMENT '材料',
-  `size` int(2) NOT NULL COMMENT '尺码',
+  `sizes` int(2) NOT NULL COMMENT '尺码',
   `name` varchar(255) NOT NULL COMMENT '名称',
   `img` varchar(255) DEFAULT NULL COMMENT '商品图片',
   `test_price` double DEFAULT '0' COMMENT '试用单价',
@@ -3702,7 +3662,7 @@ CREATE TABLE `product` (
 -- Records of product
 -- ----------------------------
 INSERT INTO `product` VALUES ('28', '1', '4', '1', '3', '150床型纯棉被套', '1451664266663.jpg', '3', '2.4', '0', '0', '5000', '2015-11-06 00:00:00', '2015-12-09 01:54:19');
-INSERT INTO `product` VALUES ('29', '1', '4', '1', '4', '150床型纯棉被套', '1451662906897.png', '3', '2.4', '0', '0', '5000', '2015-11-06 00:00:00', '2015-12-09 01:57:22');
+INSERT INTO `product` VALUES ('29', '1', '4', '1', '3', '150床型纯棉被套11', '1451664266663.jpg', '3', '2.4', '0', '0', '5000', '2015-11-06 00:00:00', '2015-12-09 01:54:19');
 INSERT INTO `product` VALUES ('30', '1', '7', '1', '0', '纯棉枕套', '1449597463551.jpg', '3', '2.4', '0', '0', '5000', '2015-11-06 00:00:00', '2015-12-09 01:57:36');
 
 -- ----------------------------
@@ -3719,12 +3679,12 @@ CREATE TABLE `users` (
   `info` varchar(255) DEFAULT '' COMMENT '备注',
   `tag` varchar(255) DEFAULT '' COMMENT '标签',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('7', '0', 'test7', '000000', '德玛西亚之力德玛西亚之力德玛西亚之力', '2014-12-30 00:55:49', '', '');
+INSERT INTO `users` VALUES ('7', '1', 'test7', '000000', '德玛西亚之力', '2014-12-30 00:55:49', '#fb84a5', '');
 INSERT INTO `users` VALUES ('9', '0', 'test9', '000000', '卡牌大师', '2014-12-30 00:55:49', '', '');
 INSERT INTO `users` VALUES ('10', '0', 'test10', '000000', '堕落天使', '2014-12-30 00:55:49', '', '');
 INSERT INTO `users` VALUES ('11', '0', 'test11', '000000', '炼金术士', '2014-12-30 00:55:49', '', '');
@@ -3780,6 +3740,9 @@ INSERT INTO `users_exp` VALUES ('25', '0', '42', '1623736474');
 INSERT INTO `users_exp` VALUES ('26', '0', '43', '1623736475');
 INSERT INTO `users_exp` VALUES ('27', '0', '44', '1623736476');
 INSERT INTO `users_exp` VALUES ('28', '0', '45', '1623736477');
+INSERT INTO `users_exp` VALUES ('29', '0', '1', '100000');
+INSERT INTO `users_exp` VALUES ('30', '213', '1', '10000');
+INSERT INTO `users_exp` VALUES ('31', '213', '1', '145454');
 
 -- ----------------------------
 -- Table structure for `users_item`
