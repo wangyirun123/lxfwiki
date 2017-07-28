@@ -4,9 +4,6 @@ identfily 7 25
 my is git identify.
 git changed small.
 Creating a new branch is quick.
-<<<<<<< HEAD
 Creating a new branch is quick & simple
-
-=======
 Creating a new branch is quick AND simple.
->>>>>>> feature1
+new fenzhi manager
